@@ -1,0 +1,23 @@
+{% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <p class="">{{message}}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                        <p class="">{{message}}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'warning' %}
+                        <p class="">{{message}}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}

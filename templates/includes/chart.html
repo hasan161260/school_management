@@ -1,0 +1,204 @@
+<script>
+
+    'use strict';
+
+$(document).ready(function() {
+
+	// Area chart
+	
+    var options = {
+        series: [{{student_count}}, {{staff_count}}, {{course_count}}, {{subject_count}}],
+        chart: {
+            height: 350,
+			width: '100%',
+        type: 'pie',
+      },
+      labels: ['Students', 'Staffs', 'Courses', 'Subjects',],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+      };
+
+      var chart = new ApexCharts(document.querySelector("#all_details"), options);
+      chart.render();
+
+	// Bar chart
+	
+	if ($('#stud_count').length > 0) {
+	var optionsBar = {
+		chart: {
+			type: 'bar',
+			height: 350,
+			width: '100%',
+			stacked: true,
+			toolbar: {
+				show: false
+			},
+		},
+		dataLabels: {
+			enabled: false
+		},
+		plotOptions: {
+			bar: {
+				columnWidth: '45%',
+			}
+		},
+		series: [{
+			name: "Boys",
+			color: '#fdbb38',
+			data: [{{student_male}}],
+		}, {
+			name: "Girls",
+			color: '#19affb',
+			data: [{{student_female}}],
+		}],
+		labels: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+		xaxis: {
+			labels: {
+				show: false
+			},
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			},
+		},
+		yaxis: {
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			},
+			labels: {
+				style: {
+					colors: '#777'
+				}
+			}
+		},
+		title: {
+			text: '',
+			align: 'left',
+			style: {
+				fontSize: '18px'
+			}
+		}
+
+	}
+  
+	var chartBar = new ApexCharts(document.querySelector('#stud_count'), optionsBar);
+	chartBar.render();
+	}
+
+    //round chart
+    var options = {
+        series: [{{student_count}}, {{staff_count}}],
+        chart: {
+            height: 350,
+			width: '100%',
+        type: 'donut',
+      },
+      labels: ['Students', 'Staffs'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+      };
+
+      var chart = new ApexCharts(document.querySelector("#staff_stu"), options);
+      chart.render();
+
+      //subject and course_count
+
+      var options = {
+        series: [{
+        name: 'Servings',
+        data: [{{subject_count}}, {{course_count}}]
+      }],
+        annotations: {
+        points: [{
+          x: 'Bananas',
+          seriesIndex: 0,
+          label: {
+            borderColor: '#775DD0',
+            offsetY: 0,
+            style: {
+              color: '#fff',
+              background: '#775DD0',
+            },
+            text: 'Bananas are good',
+          }
+        }]
+      },
+      chart: {
+        height: 350,
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 10,
+          columnWidth: '50%',
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 0
+      },
+      grid: {
+        row: {
+          colors: ['#fff', '#f2f2f2']
+        }
+      },
+      xaxis: {
+        labels: {
+          rotate: -45
+        },
+        categories: ['Subjects', 'Courses'
+        ],
+        tickPlacement: 'on'
+      },
+      yaxis: {
+        title: {
+          text: 'Servings',
+        },
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'light',
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 0.85,
+          opacityTo: 0.85,
+          stops: [50, 0, 100]
+        },
+      }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#sub_course"), options);
+      chart.render();
+  
+});
+
+
+</script>
